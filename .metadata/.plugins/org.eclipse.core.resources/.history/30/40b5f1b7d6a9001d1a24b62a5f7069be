@@ -1,0 +1,140 @@
+package project1;
+import java.util.*;
+import java.io.File;
+
+public class FirstApplication {
+	
+	private static Scanner sc = new Scanner(System.in);;
+	
+	private static void welcomePage()
+	{
+		System.out.format("%2s", "---------------------------------------");
+		System.out.format("%2s", "WELCOME");
+		System.out.format("%2s", "---------------------------------------");
+		
+		System.out.println("");
+		System.out.println("Press Enter key to continue...");
+		
+		try
+        {
+            System.in.read();
+            System.out.print("New");
+        }  
+        catch(Exception e)
+        {
+        	System.out.println("Exception:"+e);
+        }
+	}
+	
+	public void showAllFiles(File[] f,int i,int v)
+	{
+		if(i == f.length)
+		{
+			return;
+		}
+		
+		for(int j=0;j < v;j++)
+		{
+			System.out.print("\t");
+		}
+		
+		//check file
+		if(f[i].isFile())
+		{
+			System.out.println(f[i].getName());
+		}
+		else if(f[i].isDirectory())
+		{
+			System.out.println("Directory -> <"+f[i].getName()+">");
+			//recursive call same function
+			showAllFiles(f[i].listFiles(),0,v+1);
+		}
+		
+		//recursive call same function
+		showAllFiles(f,i+1,v);
+	}
+	
+	private static int mainMenuPage()
+	{
+		int usrChosMain = 0;
+		
+			System.out.println("=======================================================");
+			System.out.println("<=                    Main Menu                      =>");
+			System.out.println("=======================================================");
+			System.out.println("1. Display All File in Ascending order");
+			System.out.println("2. Perform File Operations");
+			System.out.println("3. Close Application");
+			System.out.println("Choose Your Option:");
+			usrChosMain = sc.nextInt();
+			return usrChosMain;
+	}
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		int getusrinput,nestedgetusrinput;
+		String folder_path = "F:\\simplilearn\\project1\\project1";
+		
+		welcomePage();
+		while(true)
+		{
+	        getusrinput = mainMenuPage();
+	        
+	        switch(getusrinput)
+	        {
+	            case 1:
+	            	File fobj = new File(folder_path);
+	        		FirstApplication obj = new FirstApplication();
+	        		if(fobj.exists() && fobj.isDirectory())
+	        		{
+	        			File f[] = fobj.listFiles();
+	        			System.out.println("-----------------------------------------------------------------");
+	        			System.out.println("Show All Files in Directory:"+fobj);
+	        			System.out.println("-----------------------------------------------------------------");
+	        			obj.showAllFiles(f, 0, 0);
+	        		}
+	        		break;
+	            case 2:
+	            	System.out.println("1. Add File");
+		            System.out.println("2. Delete File");
+		            System.out.println("3. Search File");
+		            System.out.println("4. Back");
+		            nestedgetusrinput = sc.nextInt();
+		            switch(nestedgetusrinput)
+		            {
+		            	case 1:
+		            		System.out.println("Enter Add File Name:");
+		            		String addFilenm = sc.next();
+		            		System.out.println("-----------------------------------------------------------------");
+		        			System.out.println(addFilenm+" File Successfully Added");
+		        			System.out.println("-----------------------------------------------------------------");
+		        			break;
+		            	case 2:
+		            		System.out.println("Enter Delete File Name:");
+		            		String delFilenm = sc.next();
+		            		System.out.println("-----------------------------------------------------------------");
+		        			System.out.println(delFilenm+" File Successfully Deleted");
+		        			System.out.println("-----------------------------------------------------------------");
+		        			break;
+		            	case 3:
+		            		System.out.println("Enter Search File Name:");
+		            		String serchFilenm = sc.next();
+		            		System.out.println("-----------------------------------------------------------------");
+		        			System.out.println(serchFilenm+" File Found");
+		        			System.out.println("-----------------------------------------------------------------");
+		        			break;
+		            	case 4:
+		            		break;
+		            	default:
+		            		break;
+		            }
+		            break;
+	            case 3:
+		            break;
+	            default:
+	            	System.out.println("Please Choose Valid Option");
+	        }
+		}
+	}
+
+}

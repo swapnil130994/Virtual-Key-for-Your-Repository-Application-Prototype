@@ -1,0 +1,30 @@
+package assignmentLinklist;
+import java.util.*;
+
+public class assignment {
+	public void showOptions()
+	{
+		Scanner sc=new Scanner(System.in);
+		int usrOpt = sc.nextInt();
+		System.out.println("1 Add Element at List");
+		System.out.println("2 Add Element at First");
+		System.out.println("3 Add Element at given index");
+		System.out.println("4 update Element at given index");
+		System.out.println("5 Delete First Element");
+		System.out.println("6 Delete Last Element");
+		System.out.println("7 Delete Given Element");
+		System.out.println("8 Delete Element at given index");
+		System.out.println("9 Display Elements");
+		System.out.println("10 Exit");
+		switch(usrOpt)
+		{
+			case 1:
+				
+		}
+	}
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

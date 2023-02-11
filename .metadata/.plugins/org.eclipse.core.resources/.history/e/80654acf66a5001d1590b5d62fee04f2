@@ -1,0 +1,84 @@
+package project1;
+import java.util.*;
+import java.io.File;
+
+public class FirstApplication {
+	public void showAllFiles(File[] f,int i,int v)
+	{
+		if(i == f.length)
+		{
+			return;
+		}
+		
+		for(int j=0;j < v;j++)
+		{
+			System.out.print("\t");
+		}
+		
+		//check file
+		if(f[i].isFile())
+		{
+			System.out.println(f[i].getName());
+		}
+		else if(f[i].isDirectory())
+		{
+			System.out.println("Directory -> <"+f[i].getName()+">");
+			//recursive call same function
+			showAllFiles(f[i].listFiles(),0,v+1);
+		}
+		
+		//recursive call same function
+		showAllFiles(f,i+1,v);
+	}
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner sc = new Scanner(System.in);
+		int getusrinput;
+		String folder_path = "F:\\simplilearn\\project1\\project1";
+		
+		System.out.format("%2s", "---------------------------------------");
+		System.out.format("%2s", "WELCOME");
+		System.out.format("%2s", "---------------------------------------");
+		
+		System.out.println("");
+		System.out.println("Press Enter key to continue...");
+        try
+        {
+            System.in.read();
+            System.out.print("New");
+        }  
+        catch(Exception e)
+        {
+        	System.out.println("Exception:"+e);
+        }
+        
+        getusrinput = sc.nextInt();
+        
+        switch(getusrinput)
+        {
+            case 1:
+            	File fobj = new File(folder_path);
+        		FirstApplication obj = new FirstApplication();
+        		if(fobj.exists() && fobj.isDirectory())
+        		{
+        			File f[] = fobj.listFiles();
+        			System.out.println("-----------------------------------------------------------------");
+        			System.out.println("Show All Files in Directory:"+fobj);
+        			System.out.println("-----------------------------------------------------------------");
+        			obj.showAllFiles(f, 0, 0);
+        		}
+        		break;
+            case 2:
+	            System.out.println("The value of the variable ="+getusrinput);
+	            break;
+            case 3:
+	            System.out.println("The value of the variable ="+getusrinput);
+	            break;
+            default:
+            	System.out.println("The value of the variable is neither 1 nor 2 nor 3");
+        }
+		
+	}
+
+}
